@@ -176,7 +176,11 @@ public class Tasks {
     
     // 4.5
     public static int[] add(int[] arr, int[] ins, int pos) {
+        if (pos > arr.length)
+            pos = arr.length;
+        
         int[] result = new int[arr.length + ins.length];
+
         for (int i = 0; i < pos; i++) {
             result[i] = arr[i];
         }

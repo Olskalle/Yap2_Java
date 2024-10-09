@@ -81,20 +81,35 @@ public class InputValidator {
     }
 
     public static char readChar() {
-        System.out.print("Введите символ");
-        return scanner.next(".").charAt(0);
+        while (true) {
+            System.out.print("Введите символ");
+            
+            try {
+                return scanner.next(".").charAt(0);
+            }
+            catch (Exception ex) {
+                System.out.println("Ошибка: Введено более одного символа, либо ввод был пуст");
+            }
+        }
     }
 
     public static char readDigit() {
         while (true) {
             System.out.print("Введите число от 0 до 9: ");
-            var digit = scanner.next(".").charAt(0);
-        
-            if (digit >= '0' && digit <= '9') {
-                return digit;
+            
+            try {
+                var digit = scanner.next(".").charAt(0);
+                
+                if (digit >= '0' && digit <= '9') {
+                    return digit;
+                }
+                
+                System.out.println("Введено не число");
             }
-
-            System.out.println("Введено не число");
+            catch (Exception ex) {
+                System.out.println("Ошибка: Введено более одного символа, либо ввод был пуст");
+                scanner.next();
+            }
         }
     }
 
@@ -105,11 +120,14 @@ public class InputValidator {
 
         while (true) {
             System.out.print("Введите массив целых чисел через пробел: ");
-            var arrTemp = scanner.nextLine().split(" ");
+            var arrTemp = scanner.nextLine().trim().split(" ");
         
             var ints = new int[arrTemp.length];
             try {
                 for (int i = 0; i < ints.length; i++) {
+                    if (arrTemp[i] == "")
+                        continue;
+
                     ints[i] = Integer.parseInt(arrTemp[i]);
                 }
 
