@@ -1,12 +1,12 @@
 
 public class Tasks {
     //1.1
-    public static double fraction(double x) {
+    public double fraction(double x) {
         return x % 1;
     }
 
     // 1.3
-    public static int charToNum(char c) {
+    public int charToNum(char c) {
         if (c <'0' || c > '9')
             return -1;
 
@@ -14,13 +14,13 @@ public class Tasks {
     }
 
     // 1.5
-    public static boolean is2Digit(int x) {
+    public boolean is2Digit(int x) {
         var abs = Math.abs(x);
         return (abs > 9 && abs < 100);
     }
 
     // 1.7
-    public static boolean isInRange(int a, int b, int num) {
+    public boolean isInRange(int a, int b, int num) {
         
         if (a > b) {
             a = a + b;
@@ -32,31 +32,31 @@ public class Tasks {
     }
 
     // 1.9
-    public static boolean isEqual(int a, int b, int c) {
+    public boolean isEqual(int a, int b, int c) {
         return a == b && b == c;
     }
 
     // 2.1
-    public static int abs(int x) {
+    public int abs(int x) {
         return x < 0 
             ? -x 
             : x;
     }
 
     // 2.3
-    public static boolean is35(int x) {
+    public boolean is35(int x) {
         return (x % 3 == 0 || x % 5 == 0) && (x % 15 != 0);
     }
 
     // 2.5
-    public static int max3(int x, int y, int z) {
+    public int max3(int x, int y, int z) {
         var max = (x > y) ? x : y;
         
         return max > z ? max : z;
     }
 
     // 2.7
-    public static int sum2(int x, int y) {
+    public int sum2(int x, int y) {
         var sum = x + y;
 
         return sum >= 10 && sum <= 19
@@ -65,7 +65,7 @@ public class Tasks {
     }
 
     // 2.9
-    public static String day (int x) {
+    public String day (int x) {
         switch (x) {
             case 1: return "понедельник";
             case 2: return "вторник";
@@ -79,7 +79,7 @@ public class Tasks {
     }
 
     // 3.1
-    public static String listNums(int x) {
+    public String listNums(int x) {
         if (x < 0)
             return "";
 
@@ -96,7 +96,7 @@ public class Tasks {
     }
 
     // 3.3
-    public static String chet(int x) {
+    public String chet(int x) {
         if (x < 0)
             return "";
 
@@ -114,7 +114,7 @@ public class Tasks {
     }
 
     // 3.5
-    public static int numLen(long x) {
+    public int numLen(long x) {
         if (x < 0)
             x *= -1;
 
@@ -128,7 +128,7 @@ public class Tasks {
     }
 
     // 3.7
-    public static void square(int x) {
+    public void square(int x) {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < x; j++) {
                 System.out.print("*");
@@ -139,7 +139,7 @@ public class Tasks {
     }
 
     // 3.9
-    public static void rightTriangle(int x) {
+    public void rightTriangle(int x) {
         for (int i = 1; i <= x; i++) {
             for (int j = 0; j < x - i; j++) {
                 System.out.print(" ");
@@ -154,7 +154,7 @@ public class Tasks {
     }
 
     // 4.1
-    public static int findFirst(int[] arr, int x) {
+    public int findFirst(int[] arr, int x) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == x) {
                 return i;
@@ -164,7 +164,7 @@ public class Tasks {
     }
 
     // 4.3
-    public static int maxAbs(int[] arr) {
+    public int maxAbs(int[] arr) {
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {
             if (Math.abs(arr[i]) > Math.abs(max)) {
@@ -175,7 +175,7 @@ public class Tasks {
     }
     
     // 4.5
-    public static int[] add(int[] arr, int[] ins, int pos) {
+    public int[] add(int[] arr, int[] ins, int pos) {
         if (pos > arr.length)
             pos = arr.length;
         
@@ -194,7 +194,7 @@ public class Tasks {
     }
     
     // 4.7
-    public static int[] reverseBack(int[] arr) {
+    public int[] reverseBack(int[] arr) {
         int[] reversed = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             reversed[i] = arr[arr.length - 1 - i];
@@ -203,7 +203,7 @@ public class Tasks {
     }
 
     // 4.9
-    public static int[] findAll(int[] arr, int x) {
+    public int[] findAll(int[] arr, int x) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == x) {
