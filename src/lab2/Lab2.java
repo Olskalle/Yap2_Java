@@ -211,7 +211,11 @@ public class Lab2 implements IRunnable{
     }
 
     private void listTasks() {
-        // Print all task names
+        println("Задание 1. Точка координат");
+        println("Задание 2. Прямая");
+        println("Задание 3. Студент");
+        println("Задание 4. Создаем точку / Создаем линию");
+        println("Задание 5. Длина линии");
     }
 
     private <T> void printArray(T[] array, String delimeter) {
