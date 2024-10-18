@@ -92,20 +92,20 @@ public class Lab2 implements IRunnable{
 
     private void runTask2() {
         var firstLineStart = new PointSimple();
-        firstLineStart.X = 1;
-        firstLineStart.Y = 3;
+        firstLineStart.setX(1);
+        firstLineStart.setY(3);
 
         var firstLineEnd = new PointSimple();
-        firstLineEnd.X = 23;
-        firstLineEnd.Y = 8;
+        firstLineEnd.setX(23);
+        firstLineEnd.setY(8);
 
         var secondLineStart = new PointSimple();
-        secondLineStart.X = 5;
-        secondLineStart.Y = 10;
+        secondLineStart.setX(5);
+        secondLineStart.setY(10);
 
         var secondLineEnd = new PointSimple();
-        secondLineEnd.X = 25;
-        secondLineEnd.Y = 10;
+        secondLineEnd.setX(25);
+        secondLineEnd.setY(10);
 
         var lines = new LineSimple[] {
             new LineSimple(),
@@ -113,40 +113,40 @@ public class Lab2 implements IRunnable{
             new LineSimple(),
         };
         
-        lines[0].Start = firstLineStart;
-        lines[0].End = firstLineEnd;
+        lines[0].setStart(firstLineStart);
+        lines[0].setEnd(firstLineEnd);
 
-        lines[1].Start = secondLineStart;
-        lines[1].End = secondLineEnd;
+        lines[1].setStart(secondLineStart);
+        lines[1].setEnd(secondLineEnd);
 
-        lines[2].Start = firstLineStart;
-        lines[2].End = secondLineEnd;
+        lines[2].setStart(firstLineStart);
+        lines[2].setEnd(secondLineEnd);
 
         println("Линии:");
         printArray(lines, "\n");
 
         // п.4 задания
         println("Измените начала координаты первой линии. Введите сначала X, затем Y");
-        firstLineStart.X = InputValidator.readInt(false);
-        firstLineStart.Y = InputValidator.readInt(false);
+        firstLineStart.setX(InputValidator.readInt(false));
+        firstLineStart.setY(InputValidator.readInt(false));
 
         println("Измените конца координаты второй линии. Введите сначала X, затем Y");
-        secondLineEnd.X = InputValidator.readInt(false);
-        secondLineEnd.Y = InputValidator.readInt(false);
+        secondLineEnd.setX(InputValidator.readInt(false));
+        secondLineEnd.setY(InputValidator.readInt(false));
 
         println("Измененные линии:");
         printArray(lines, "\n");
 
         // п.5 задания
         println("Измените конца координаты первой линии. Введите сначала X, затем Y");
-        lines[0].End.X = InputValidator.readInt(false);
-        lines[0].End.Y = InputValidator.readInt(false);
+        lines[0].getEnd().setX(InputValidator.readInt(false));
+        lines[0].getEnd().setY(InputValidator.readInt(false));
 
         println("Измените начала координаты первой линии. Введите сначала X, затем Y");
         var newStart = new PointSimple();
-        newStart.X = InputValidator.readInt(false);
-        newStart.Y = InputValidator.readInt(false);
-        lines[0].Start = newStart;
+        newStart.setX(InputValidator.readInt(false));
+        newStart.setY(InputValidator.readInt(false));
+        lines[0].setStart(newStart);
 
         println("Измененные линии:");
         printArray(lines, "\n");
@@ -184,8 +184,8 @@ public class Lab2 implements IRunnable{
             println("Введите координаты. Сначала X, затем Y");
 
             points[i] = new PointSimple();
-            points[i].X = InputValidator.readInt(false);
-            points[i].Y = InputValidator.readInt(false);
+            points[i].setX(InputValidator.readInt(false));
+            points[i].setY(InputValidator.readInt(false));
         }
 
         print("Точки: ");
