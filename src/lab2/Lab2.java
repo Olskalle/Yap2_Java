@@ -13,13 +13,13 @@ public class Lab2 implements IRunnable{
 
         listTasks();
         while (!exitRequested) {
-            println("\nВведите номер задания (введите 0 для выхода):");
+            System.out.println("\nВведите номер задания (введите 0 для выхода):");
             var taskNum = InputValidator.readInt(true);
 
             switch (taskNum) {
                 case 0:
                     exitRequested = true;
-                    println("Выход...");
+                    System.out.println("Выход...");
                     break;
                 case 1: runTask1(); break;
                 case 2: runTask2(); break;
@@ -27,28 +27,28 @@ public class Lab2 implements IRunnable{
                 case 4: runTask4(); break;
                 case 5: runTask5(); break;
 
-                default: print("Задания с таким номером нет. ");
+                default: System.out.print("Задания с таким номером нет. ");
             }
         }
     }
 
     private void runTask4() {
         // 4.1
-        println("Задание 4. Создаем точку / Создаем линию. Введите координаты для трех точек");
+        System.out.println("Задание 4. Создаем точку / Создаем линию. Введите координаты для трех точек");
         var points = new Point[3];
         for (int i = 0; i < 3; i++) {
-            println("Введите координаты. Сначала X, затем Y");
+            System.out.println("Введите координаты. Сначала X, затем Y");
 
             points[i] = new Point(
                 InputValidator.readInt(false),
                 InputValidator.readInt(false));
         }
 
-        print("Точки: ");
+        System.out.print("Точки: ");
         for (int i = 0; i < 3; i++) {
-            print(points[i].toString() + " ");
+            System.out.print(points[i] + " ");
         }
-        println("");
+        System.out.println("");
 
         // 4.2
         var firstLineStart = new Point(1, 3);
@@ -60,33 +60,33 @@ public class Lab2 implements IRunnable{
             new Line(firstLineStart, secondLineEnd),
         };
 
-        println("Линии:");
+        System.out.println("Линии:");
         printArray(lines, "\n");
 
          // п.4 задания
-        println("Измените начала координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените начала координаты первой линии. Введите сначала X, затем Y");
             firstLineStart.setX(InputValidator.readInt(false));
             firstLineStart.setY(InputValidator.readInt(false));
 
-        println("Измените конца координаты второй линии. Введите сначала X, затем Y");
+        System.out.println("Измените конца координаты второй линии. Введите сначала X, затем Y");
             secondLineEnd.setX(InputValidator.readInt(false));
             secondLineEnd.setY(InputValidator.readInt(false));
 
-        println("Измененные линии:");
+        System.out.println("Измененные линии:");
         printArray(lines, "\n");
 
         // п.5 задания
-        println("Измените конца координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените конца координаты первой линии. Введите сначала X, затем Y");
         lines[0].setEnd(new Point(
             InputValidator.readInt(false),
             InputValidator.readInt(false)));
 
-        println("Измените начала координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените начала координаты первой линии. Введите сначала X, затем Y");
         lines[0].setStart(new Point(
             InputValidator.readInt(false),
             InputValidator.readInt(false)));
         
-        println("Измененные линии:");
+        System.out.println("Измененные линии:");
         printArray(lines, "\n"); 
     }
 
@@ -122,33 +122,33 @@ public class Lab2 implements IRunnable{
         lines[2].setStart(firstLineStart);
         lines[2].setEnd(secondLineEnd);
 
-        println("Линии:");
+        System.out.println("Линии:");
         printArray(lines, "\n");
 
         // п.4 задания
-        println("Измените начала координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените начала координаты первой линии. Введите сначала X, затем Y");
         firstLineStart.setX(InputValidator.readInt(false));
         firstLineStart.setY(InputValidator.readInt(false));
 
-        println("Измените конца координаты второй линии. Введите сначала X, затем Y");
+        System.out.println("Измените конца координаты второй линии. Введите сначала X, затем Y");
         secondLineEnd.setX(InputValidator.readInt(false));
         secondLineEnd.setY(InputValidator.readInt(false));
 
-        println("Измененные линии:");
+        System.out.println("Измененные линии:");
         printArray(lines, "\n");
 
         // п.5 задания
-        println("Измените конца координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените конца координаты первой линии. Введите сначала X, затем Y");
         lines[0].getEnd().setX(InputValidator.readInt(false));
         lines[0].getEnd().setY(InputValidator.readInt(false));
 
-        println("Измените начала координаты первой линии. Введите сначала X, затем Y");
+        System.out.println("Измените начала координаты первой линии. Введите сначала X, затем Y");
         var newStart = new PointSimple();
         newStart.setX(InputValidator.readInt(false));
         newStart.setY(InputValidator.readInt(false));
         lines[0].setStart(newStart);
 
-        println("Измененные линии:");
+        System.out.println("Измененные линии:");
         printArray(lines, "\n");
     } 
 
@@ -156,73 +156,65 @@ public class Lab2 implements IRunnable{
         var vasya = new Student("Вася", new int[] {3, 4, 5});
         var petya = new Student("Петя", vasya.getGrades());
 
-        println(vasya.toString());
-        println(petya.toString());
+        System.out.println(vasya);
+        System.out.println(petya);
 
-        println("Изменим первую оценку Пети на 5");
+        System.out.println("Изменим первую оценку Пети на 5");
         var petyaGrades = petya.getGrades(); 
         petyaGrades[0] = 5;
         
-        println(vasya.toString());
-        println(petya.toString());
-        println("Оценка Васи также изменилась, т.к. оценки Васи были переданы Пете в конструктор по ссылке");
+        System.out.println(vasya);
+        System.out.println(petya);
+        System.out.println("Оценка Васи также изменилась, т.к. оценки Васи были переданы Пете в конструктор по ссылке");
 
-        println("Создадим студента Андрея, скопируем оценки Пети и изменим одну оценку у Васи");
+        System.out.println("Создадим студента Андрея, скопируем оценки Пети и изменим одну оценку у Васи");
         var andrey = new Student("Андрей", petyaGrades.clone());
         petyaGrades[1] = 2;
 
-        println(vasya.toString());
-        println(petya.toString());
-        println(andrey.toString());
-        println("Оценки Андрея не изменились, т.к. в конструктор был передан клон массива оценок");
+        System.out.println(vasya);
+        System.out.println(petya);
+        System.out.println(andrey);
+        System.out.println("Оценки Андрея не изменились, т.к. в конструктор был передан клон массива оценок");
     }
 
     private void runTask1() {
-        println("Задание 1. Введите координаты для трех точек");
+        System.out.println("Задание 1. Введите координаты для трех точек");
         var points = new PointSimple[3];
         for (int i = 0; i < 3; i++) {
-            println("Введите координаты. Сначала X, затем Y");
+            System.out.println("Введите координаты. Сначала X, затем Y");
 
             points[i] = new PointSimple();
             points[i].setX(InputValidator.readInt(false));
             points[i].setY(InputValidator.readInt(false));
         }
 
-        print("Точки: ");
+        System.out.print("Точки: ");
         for (int i = 0; i < 3; i++) {
-            print(points[i].toString() + " ");
+            System.out.print(points[i] + " ");
         }
-        println("");
+        System.out.println("");
     }
 
     private void runTask5() {
-        println("Задание 5. Длина линии.");
+        System.out.println("Задание 5. Длина линии.");
         var line = new Line(1, 1, 10 , 15);
 
-        println(line.toString() + ", ее длина: " + line.getLength());
-    }
-
-    private static void println(String output) {
-        System.out.println(output);
-    }
-
-    private static void print(String string) {
-        System.out.print(string);
+        System.out.println(line + ", ее длина: " + line.getLength());
     }
 
     private void listTasks() {
-        println("Задание 1. Точка координат");
-        println("Задание 2. Прямая");
-        println("Задание 3. Студент");
-        println("Задание 4. Создаем точку / Создаем линию");
-        println("Задание 5. Длина линии");
+        System.out.println("Задание 1. Точка координат");
+        System.out.println("Задание 2. Прямая");
+        System.out.println("Задание 3. Студент");
+        System.out.println("Задание 4. Создаем точку / Создаем линию");
+        System.out.println("Задание 5. Длина линии");
     }
 
     private <T> void printArray(T[] array, String delimeter) {
         for (int i = 0; i < array.length - 1; i++) {
-            print(array[i].toString() + delimeter);
+            System.out.print(array[i] + delimeter);
         }
-        println(array[array.length - 1].toString());
+        System.out.println(array[array.length - 1]);
     }
 }
 
