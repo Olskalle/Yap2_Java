@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class InputValidator {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in, "Cp866");
 
     public static int readInt(boolean shouldBePositive) {
         int value;
@@ -138,5 +138,23 @@ public class InputValidator {
                 System.out.println("Один или более элементов не являлись целым числом");
             }
         }
+    }
+
+    public static String readTime() {
+        String time = "";
+        boolean isValid = false;
+
+        while (!isValid) {
+            System.out.println("Введите время в формате hh:mm: ");
+            time = scanner.nextLine();
+
+            if (time.matches("^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$")) {
+                isValid = true;
+            } else {
+                System.out.print("Введенное значение не явлсяется временем! ");
+            }
+        }
+
+        return time;
     }
 }

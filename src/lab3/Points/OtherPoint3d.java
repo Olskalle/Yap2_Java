@@ -13,7 +13,7 @@ public class OtherPoint3d extends OtherPoint2d {
     }
 
     public OtherPoint3d(int x, int y, int z) {
-        super(x);
+        super(x, y);
         this.z = z;
     }
 

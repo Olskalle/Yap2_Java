@@ -41,6 +41,6 @@ public class Square {
 
     @Override
     public String toString() {
-        return "Квадрат в точке " + topLeftPoint + "со стороной " + sideLength;
+        return "Квадрат в точке " + topLeftPoint + " со стороной " + sideLength;
     }
 }

@@ -2,7 +2,7 @@ package lab3;
 
 import lab3.Points.Point2d;
 
-class Line {
+class Line implements Cloneable{
     private Point2d start;
     private Point2d end;
     
@@ -42,5 +42,24 @@ class Line {
     @Override
     public String toString() {
         return "Линия от " + start + " до " + end;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) 
+            return true;
+        
+            if (obj == null || getClass() != obj.getClass()) 
+            return false;
+
+        var other = (Line)obj;
+
+        return this.start.equals(other.getStart()) 
+            && this.end.equals(other.getEnd());
+    }
+
+    @Override
+    public Object clone() {
+        return new Line((Point2d)start.clone(), (Point2d)end.clone());
     }
 }

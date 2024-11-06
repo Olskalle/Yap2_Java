@@ -12,7 +12,7 @@ public class Polyline {
     }
 
     public Polyline(Point2d... points) {
-        points = points.clone();
+        this.points = points.clone();
     }
 
     public void addPoints(Point2d... points) {
@@ -38,6 +38,19 @@ public class Polyline {
 
         return total;
     } 
+
+    public void movePointAtIndex(int index, int x, int y) {
+        if (index >= points.length || index < 0)
+            return;
+
+        var point = points[index];
+        point.setX(x);
+        point.setY(y); 
+    }
+
+    public int count() {
+        return points.length;
+    }
 
     @Override
     public String toString() {
