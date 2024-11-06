@@ -1,18 +1,20 @@
 package lab3;
 
+import lab3.Points.Point2d;
+
 public class Square {
-    private Point topLeftPoint;
+    private Point2d topLeftPoint;
     private int sideLength;
     
     public int getSideLength() {
         return sideLength;
     }
 
-    public Point getTopLeftPoint() {
+    public Point2d getTopLeftPoint() {
         return topLeftPoint;
     }
 
-    public Square(Point topLeft, int length) throws IllegalArgumentException {
+    public Square(Point2d topLeft, int length) throws IllegalArgumentException {
         if (length < 0)
             throw new IllegalArgumentException("Длина была меньше нуля");
         
@@ -24,16 +26,16 @@ public class Square {
         if (length < 0)
             throw new IllegalArgumentException("Длина была меньше нуля");
         
-        topLeftPoint = new Point(topLeftX, topLeftY);
+        topLeftPoint = new Point2d(topLeftX, topLeftY);
         sideLength = length;
     }
 
     public Polyline getPolyline() {
         return new Polyline(
             topLeftPoint,
-            new Point(topLeftPoint.x + sideLength, topLeftPoint.y),
-            new Point(topLeftPoint.x + sideLength, topLeftPoint.y - sideLength),
-            new Point(topLeftPoint.x, topLeftPoint.y - sideLength),
+            new Point2d(topLeftPoint.getX() + sideLength, topLeftPoint.getY()),
+            new Point2d(topLeftPoint.getX() + sideLength, topLeftPoint.getY() - sideLength),
+            new Point2d(topLeftPoint.getX(), topLeftPoint.getY() - sideLength),
             topLeftPoint);
     }
 

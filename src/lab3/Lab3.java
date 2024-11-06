@@ -1,6 +1,11 @@
 package lab3;
 import common.IRunnable;
 import common.InputValidator;
+import lab3.Points.OtherPoint2d;
+import lab3.Points.OtherPoint3d;
+import lab3.Points.Point1d;
+import lab3.Points.Point2d;
+import lab3.Points.Point3d;
 
 public class Lab3 implements IRunnable {
 
@@ -41,56 +46,83 @@ public class Lab3 implements IRunnable {
     }
 
     private void runTask4() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runTask4'");
+        System.out.println("Иерархия классов точек:");
+        System.out.println("Точка с одной координатой:");
+        System.out.println(new Point1d(InputValidator.readInt(false)));
+        
+        System.out.println("Точка с двумя координатами:");
+        System.out.println(new OtherPoint2d(
+            InputValidator.readInt(false), 
+            InputValidator.readInt(false)));
+        
+        System.out.println("Точка с тремя координатами:");
+        System.out.println(new OtherPoint3d(
+            InputValidator.readInt(false), 
+            InputValidator.readInt(false), 
+            InputValidator.readInt(false)));
     }
 
     private void runTask3() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runTask3'");
+        System.out.println("Трехмерная точка.");
+        System.out.println("Создадим трехмерную точку. Задайте координаты X, Y, Z:");
+        var point3d = new Point3d(
+            InputValidator.readInt(false),
+            InputValidator.readInt(false),
+            InputValidator.readInt(false));
+        System.err.println("Полученная точка:" + point3d);
     }
 
     private void runTask2() {
         System.out.println("Создадим неизменяемый массив через массив:");
-        ImmutableValueList list1 = new ImmutableValueList(InputValidator.readIntArray());
-        System.out.println("Неизменияемый массив 1: " + list1);
+        ImmutableArray array1 = new ImmutableArray(InputValidator.readIntArray());
+        System.out.println("Неизменияемый массив 1: " + array1);
         
         System.out.println("Создадим неизменяемый массив через перечисление чисел:");
-        ImmutableValueList list2 = new ImmutableValueList(
+        ImmutableArray array2 = new ImmutableArray(
             InputValidator.readInt(false),
             InputValidator.readInt(false),
             InputValidator.readInt(false)
             );
-        System.out.println("Неизменяемый массив 2: " + list2);
+        System.out.println("Неизменяемый массив 2: " + array2);
         
         System.out.println("Создадим неизменяемый массив через другой неизменяемый массив:");
-        ImmutableValueList list3 = new ImmutableValueList(list1);
-        System.out.println("Неимзеняемый массив 3: " + list3);
+        ImmutableArray array3 = new ImmutableArray(array1);
+        System.out.println("Неимзеняемый массив 3: " + array3);
 
         System.out.println("Выберем элемент из массива по индексу: ");
-        var index = 
-        System.out.println("Get value at index 1 from List1: " + list1.get(1));
-        System.out.println("Size of List1: " + list1.size()); // 3
-        System.out.println("Is List1 empty? " + list1.isEmpty()); // false
+        var index = InputValidator.readInt(true);
 
-        // Показать, как создать новый список с изменением значения
-        ImmutableValueList list4 = list1.withValueAt(1, 99);
-        System.out.println("List4 (new value at index 1): " + list4); // [1, 99, 3]
-        System.out.println("List1 remains unchanged: " + list1); // [1, 2, 3]
+        try {
+            System.out.println("Элемент массива_1 под номером " + index +": " + array1.get(index));
+        } catch (Exception e) {
+            System.out.println("Получили ошибку, что индекс находился за границами массива.");
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("Размер массива 1: " + array1.size());
+        System.out.println("Проверка массива 1 на пустоту: " + array1.isEmpty());
+        
+        System.out.println("Создадим копию массива 1 с измененным элементом. Введите индекс, который хотите заменить, затем новое значение:");
+        ImmutableArray array4 = array1.withValueAt(
+            InputValidator.readInt(true), 
+            InputValidator.readInt(false));
+
+        System.out.println("Скопированный массив: " + array4);
+        System.out.println("Исходный массив: " + array1);
     }
 
     private void runTask1() {
         System.out.println("6. Отдельные линии");
         System.out.println("Создадим две линии, у которых концы будут находиться в одной точке. Введите координаты начал этих двух точек и координату конца");
-        var firstLineStart = new Point(
+        var firstLineStart = new Point2d(
             InputValidator.readInt(false),
             InputValidator.readInt(false));
 
-        var secondLineStart = new Point(
+        var secondLineStart = new Point2d(
             InputValidator.readInt(false),
             InputValidator.readInt(false));
         
-        var end = new Point(
+        var end = new Point2d(
             InputValidator.readInt(false),
             InputValidator.readInt(false));
 
@@ -111,9 +143,7 @@ public class Lab3 implements IRunnable {
         System.err.println("Теперь концы не совпадают, т.к. линии не ссылаются на один объект точки");
         
         System.err.println("\n12 Квадрат");
-        
     }
-
 
     private void listTasks() {
         System.out.println("1. Отдельные линии; Квадрат");

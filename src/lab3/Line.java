@@ -1,33 +1,35 @@
 package lab3;
 
+import lab3.Points.Point2d;
+
 class Line {
-    private Point start;
-    private Point end;
+    private Point2d start;
+    private Point2d end;
     
-    public Line(Point start, Point end) {
-        this.start = new Point(start.getX(), start.getY());
-        this.end = new Point(end.getX(), end.getY());
+    public Line(Point2d start, Point2d end) {
+        this.start = new Point2d(start.getX(), start.getY());
+        this.end = new Point2d(end.getX(), end.getY());
     }
     
     public Line(int startX, int startY, int endX, int endY) {
-        start = new Point(startX, startY);
-        end = new Point(endX, endY);
+        start = new Point2d(startX, startY);
+        end = new Point2d(endX, endY);
     }
 
-    public Point getStart() {
+    public Point2d getStart() {
         return start;
     }
     
-    public Point getEnd() {
+    public Point2d getEnd() {
         return end;
     }
 
-    public void setStart(Point point) {
-        start = new Point(point.getX(), point.getY());
+    public void setStart(Point2d point) {
+        start = new Point2d(point.getX(), point.getY());
     }
 
-    public void setEnd(Point point) {
-        end = new Point(point.getX(), point.getY());
+    public void setEnd(Point2d point) {
+        end = new Point2d(point.getX(), point.getY());
     }
 
     public int getLength() {

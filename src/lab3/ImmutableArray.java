@@ -1,14 +1,14 @@
 package lab3;
 import java.util.Arrays;
 
-public class ImmutableValueList {
+public class ImmutableArray {
     private final int[] values;
 
-    public ImmutableValueList(int... values) {
+    public ImmutableArray(int... values) {
         this.values = Arrays.copyOf(values, values.length);
     }
 
-    public ImmutableValueList(ImmutableValueList other) {
+    public ImmutableArray(ImmutableArray other) {
         this.values = Arrays.copyOf(other.values, other.values.length);
     }
 
@@ -19,13 +19,13 @@ public class ImmutableValueList {
         return values[index];
     }
 
-    public ImmutableValueList withValueAt(int index, int newValue) {
+    public ImmutableArray withValueAt(int index, int newValue) {
         if (index < 0 || index >= values.length) {
             throwOutOfBounds(index);
         }
         int[] newValues = Arrays.copyOf(values, values.length);
         newValues[index] = newValue;
-        return new ImmutableValueList(newValues);
+        return new ImmutableArray(newValues);
     }
 
     @Override

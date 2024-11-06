@@ -2,18 +2,20 @@ package lab3;
 
 import java.util.Arrays;
 
+import lab3.Points.Point2d;
+
 public class Polyline {
-    private Point[] points;
+    private Point2d[] points;
     
     public Polyline() {
-        points = new Point[0];
+        points = new Point2d[0];
     }
 
-    public Polyline(Point... points) {
+    public Polyline(Point2d... points) {
         points = points.clone();
     }
 
-    public void addPoints(Point... points) {
+    public void addPoints(Point2d... points) {
         var result = Arrays.copyOf(this.points, this.points.length + points.length);
         System.arraycopy(points, 0, result, this.points.length, points.length);
 
