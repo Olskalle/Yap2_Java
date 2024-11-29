@@ -175,33 +175,67 @@ public class Lab4 implements IRunnable {
         System.out.println("2. Сумма чисел");
         List<Integer> numbers = Arrays.asList(1, -3, 7);
         System.out.println("Числа: " + numbers);
-
+        
         int sum = GenericMethods.reduce(numbers, (n1, n2) -> n1 + n2, 0);
         System.out.println("Сумма: " + sum);
+        
+        System.out.println("2. Общее кол-во элементов");
+        List<List<Integer>> listOfLists = List.of(
+            new ArrayList<>(List.of(1, 2, 3)),
+            new ArrayList<>(List.of(4, 5)),
+            new ArrayList<>(List.of(6, 7, 8, 9))
+        );
+        
+        List<Integer> totalBySublists = GenericMethods.reduce(listOfLists, (acc, currentList) -> {
+            acc.addAll(currentList);
+            return acc;
+            }, new ArrayList<>());
+            
+        int totalCount = GenericMethods.reduce(totalBySublists, (n1, n2) -> n1 + 1, 0);
+
+        System.out.println("Общее количество элементов: " + totalCount);
 
         List<Integer> empty = List.of(); 
         int emptyTest = GenericMethods.reduce(empty, (n1, n2) -> n1 + n2, 0);
     }
 
     private void runTask34() {
-
         List<Integer> numbers = Arrays.asList(1, -3, 7);
-        System.out.println("Числа: " + numbers);
-        Map<Boolean, List<Integer>> groupedBySign = GenericMethods.collect(numbers, n -> n > 0);
-        System.out.println("Сгруппированные по знаку: " + groupedBySign);
+        List<Integer> positiveNumbers = GenericMethods.processCollection(
+                numbers,
+                ArrayList::new,
+                num -> num > 0
+        );
+        List<Integer> negativeNumbers = GenericMethods.processCollection(
+                numbers,
+                ArrayList::new,
+                num -> num < 0
+        );
+        System.out.println("Положительные числа: " + positiveNumbers);
+        System.out.println("Отрицательные числа: " + negativeNumbers);
 
-        List<String> strings = List.of("qwerty", "asdfg", "zx", "qw");
-        System.out.println("Строки:" + strings);
-        Map<Integer, List<String>> groupedByLength = GenericMethods.collect(strings, String::length);
-        System.out.println("Сгруппированные по длине: " + groupedByLength);
+        List<String> strings = Arrays.asList("qwerty", "asdfg", "zx", "qw");
+        Map<Integer, List<String>> groupedByLength = new HashMap<>();
+        
+        GenericMethods.processCollection(
+                strings,
+                () -> new ArrayList<>(),
+                str -> {
+                    groupedByLength.computeIfAbsent(str.length(), k -> new ArrayList<>()).add(str);
+                    return true;
+                }
+        );
 
-        List<String> stringsWithDuplicates = List.of("qwerty", "asdfg", "qwerty", "qw");
-        System.out.println("Строки с дубликатами:" + stringsWithDuplicates);
+        System.out.println("Строки, сгруппированные по длине: " + groupedByLength);
 
-        Set<String> withoutDuplicates = GenericMethods.collectToType(stringsWithDuplicates, HashSet::new);
+        List<String> uniqueStrings = Arrays.asList("qwerty", "asdfg", "qwerty", "qw");
+        Set<String> uniqueSet = GenericMethods.processCollection(
+                uniqueStrings,
+                HashSet::new,
+                value -> true
+        );
+        System.out.println("Уникальные строки: " + uniqueSet);
 
-        // Выводим результат
-        System.out.println("Без Дубликатов: " + withoutDuplicates);
     }
 
     private void listTasks() {

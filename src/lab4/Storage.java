@@ -1,7 +1,7 @@
 package lab4;
 
 class Storage<T> {
-    private T value;
+    private final T value;
 
     public Storage(T value) {
         this.value = value;

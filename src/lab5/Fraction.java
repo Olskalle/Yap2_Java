@@ -60,7 +60,7 @@ public class Fraction implements IFraction {
         if (this == obj) 
             return true;
     
-        if (obj == null || getClass() != obj.getClass()) 
+        if (obj == null || !(obj instanceof IFraction)) 
             return false;
 
         var other = (IFraction)obj;

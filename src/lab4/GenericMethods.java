@@ -2,9 +2,7 @@ package lab4;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -32,23 +30,19 @@ public class GenericMethods {
         return result;
     }
 
-    public static <T, K> Map<K, List<T>> collect(List<T> sourceList, Function<T, K> keyExtractor) {
-        
-        Map<K, List<T>> groupedMap = new HashMap<>();
-        for (T item : sourceList) {
-            K key = keyExtractor.apply(item);
-            
-            groupedMap.computeIfAbsent(key, k -> new ArrayList<>()).add(item);
-        }
-        return groupedMap;
-    }
+    public static <T, P extends Collection<T>> P processCollection(
+            List<T> sourceList,
+            Supplier<P> collectionSupplier,
+            Function<T, Boolean> valueHandler) {
 
-    public static <T, P extends Collection<T>> P collectToType(
-            List<T> sourceList, 
-            Supplier<P> collectionSupplier) {
-        
         P resultCollection = collectionSupplier.get();
-        resultCollection.addAll(sourceList);
+
+        for (T value : sourceList) {
+            if (valueHandler.apply(value)) {
+                resultCollection.add(value);
+            }
+        }
+        
         return resultCollection;
     }
 }

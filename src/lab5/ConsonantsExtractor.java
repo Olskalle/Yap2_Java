@@ -1,27 +1,32 @@
 package lab5;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class ConsonantsExtractor {
-    static final String voicedConsonants = "бвгджзлмнр";
+    private static final String voicedConsonants = "бвгджзлмнр";
     
-    public static void extract(String filename) throws IOException {
+    public static void extract(String filename) {
         Set<Character> consonants = new TreeSet<>();
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-        String line;
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8))) {
+            String line;
 
-
-        while ((line = reader.readLine()) != null) {
-            for (char c : line.toLowerCase().toCharArray()) {
-                if (voicedConsonants.indexOf(c) >= 0) {
-                    consonants.add(c);
+            // Read lines from the file
+            while ((line = reader.readLine()) != null) {
+                for (char c : line.toLowerCase().toCharArray()) {
+                    // Check if the character is a voiced consonant and add it to the set
+                    if (voicedConsonants.indexOf(c) >= 0) {
+                        consonants.add(c);
+                    }
                 }
             }
-        }
 
-        consonants.forEach(System.out::println);
-        reader.close();
+            consonants.forEach(System.out::print);
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+        System.out.println();
     }
 }
 

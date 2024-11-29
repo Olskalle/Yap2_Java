@@ -1,5 +1,7 @@
 package lab3.Points;
 
+import java.util.Objects;
+
 import lab2.Point;
 
 public class Point2d implements Cloneable{
@@ -39,6 +41,11 @@ public class Point2d implements Cloneable{
         
         var other = (Point2d) obj;
         return this.x == other.getX() && this.y == other.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override

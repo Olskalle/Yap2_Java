@@ -1,4 +1,6 @@
 package common;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -138,6 +140,17 @@ public class InputValidator {
                 System.out.println("Один или более элементов не являлись целым числом");
             }
         }
+    }
+
+    public static ArrayList<Integer> readIntegerArray() {
+        var array = readIntArray();
+        var referenceIntArray = new Integer[array.length];
+        
+        for (int i = 0; i < array.length; i++) {
+            referenceIntArray[i] = array[i];
+        }
+
+        return new ArrayList<>(Arrays.asList(referenceIntArray));
     }
 
     public static String readTime() {
