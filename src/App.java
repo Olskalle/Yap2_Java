@@ -5,55 +5,34 @@ import lab2.Lab2;
 import lab3.Lab3;
 import lab4.Lab4;
 import lab5.Lab5;
+import lab6.Lab6;
 
 public class App {
     public static void main(String[] args) throws Exception {
-         while (true) { // Infinite loop until exit condition is met
-            // Display the menu to the user
-            System.out.println("Choose a lab to run:");
+         while (true) { 
+            System.out.println("Выберите лабораторную работу:");
             System.out.println("1. Lab 1");
             System.out.println("2. Lab 2");
             System.out.println("3. Lab 3");
             System.out.println("4. Lab 4");
             System.out.println("5. Lab 5");
+            System.out.println("6. Lab 6");
             System.out.println("0. Exit");
 
-            // Read the user's choice (validation already handled by InputValidator)
             int choice = InputValidator.readInt(true);
 
-            // Exit condition
             if (choice == 0) {
-                System.out.println("Exiting program.");
-                break; // Exit the loop and terminate the program
+                System.out.println("Выход...");
+                break;
             }
 
-            // Declare a variable for the lab that will be run
-            IRunnable lab = null;
+            IRunnable lab = LabFactory.getLab(choice);
 
-            // Instantiate the selected lab
-            switch (choice) {
-                case 1:
-                    lab = new Lab1();
-                    break;
-                case 2:
-                    lab = new Lab2();
-                    break;
-                case 3:
-                    lab = new Lab3();
-                    break;
-                case 4:
-                    lab = new Lab4();
-                    break;
-                case 5:
-                    lab = new Lab5();
-                    break;
-                default:
-                    // Invalid choice: Retry
-                    System.out.println("Invalid choice. Please try again.");
-                    continue; // Go back to the start of the loop to prompt for a valid choice
+            if (lab == null) {
+                System.out.println("Работы с таким номером нет. Введите заново.");
+                continue;
             }
 
-            // Run the selected lab
             lab.run();
         }
     }
